@@ -1,5 +1,4 @@
 import { Client, GatewayIntentBits } from 'discord.js';
-import fs from 'fs/promises';
 
 export class Server {
 	constructor() {
@@ -12,16 +11,9 @@ export class Server {
 		});
 	}
 
-	async loadConfig(filePath) {
-		try {
-			//'./credentials.json'
-			const rawData = await fs.readFile(filePath, 'utf-8');
-			this.config = JSON.parse(rawData);
-			this.token = this.config.BOT_TOKEN;
-		} catch (error) {
-			console.error('Error loading configuration:', error);
-			throw error;
-		}
+	async loadConfig(config) {
+		this.config = config;
+		this.token = this.config.BOT_TOKEN;
 	}
 
 	async login() {
@@ -36,10 +28,6 @@ export class Server {
 	}
 
 	async init() {
-		if (!this.config) {
-			throw new Error('Configuration not loaded. Call loadConfig() or login() first.');
-		}
-
 		try {
 			this.guild = await this.bot.guilds.fetch(this.config.SERVER_ID);
 
