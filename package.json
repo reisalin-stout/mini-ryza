@@ -1,0 +1,16 @@
+{
+	"name": "mini-ryza",
+	"version": "1.0.0",
+	"main": "main.js",
+	"type": "module",
+	"scripts": {
+		"start": "node main.js"
+	},
+	"author": "reisalin-stout",
+	"license": "ISC",
+	"description": "Discord bot code for my server <Strobe Central>",
+	"dependencies": {
+		"discord.js": "^14.18.0"
+	}
+}
+
